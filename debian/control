@@ -1,0 +1,37 @@
+Source: plexus-io
+Section: java
+Priority: optional
+Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Torsten Werner <twerner@debian.org>,
+ Ludovic Claude <ludovic.claude@laposte.net>,
+ tony mancill <tmancill@debian.org>
+Build-Depends:
+ debhelper-compat (= 12),
+ default-jdk,
+ junit4,
+ libcommons-io-java,
+ libjsr305-java,
+ libplexus-cli-java,
+ libplexus-container-default1.5-java,
+ libplexus-utils2-java,
+ maven-debian-helper (>= 2.2)
+Standards-Version: 4.5.0
+Vcs-Git: https://salsa.debian.org/java-team/plexus-io.git
+Vcs-Browser: https://salsa.debian.org/java-team/plexus-io
+Homepage: https://github.com/codehaus-plexus/plexus-io
+Rules-Requires-Root: no
+
+Package: libplexus-io-java
+Architecture: all
+Depends: ${maven:Depends}, ${misc:Depends}
+Suggests: ${maven:OptionalDepends}
+Description: Plexus IO Components
+ Plexus IO is a set of plexus components, which are designed for use in I/O
+ operations. These I/O operations are doing nothing spectacular. For example,
+ Apache Commons IO is a much more powerful library in the same area. However,
+ the implementation as a plexus component allows reuse in Maven.
+ .
+ The following component groups are currently available:
+  * File Mappers
+  * File Selectors

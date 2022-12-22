@@ -1,0 +1,103 @@
+Description: Fixes incompatibility issues breaking plexus-archiver 2.x
+Author: Emmanuel Bourg <ebourg@apache.org>
+Forwarded: not-needed
+--- a/src/main/java/org/codehaus/plexus/components/io/resources/PlexusIoFileResourceCollection.java
++++ b/src/main/java/org/codehaus/plexus/components/io/resources/PlexusIoFileResourceCollection.java
+@@ -20,6 +20,7 @@
+ import org.codehaus.plexus.components.io.attributes.PlexusIoResourceAttributes;
+ import org.codehaus.plexus.components.io.attributes.SimpleResourceAttributes;
+ import org.codehaus.plexus.components.io.functions.PlexusIoResourceConsumer;
++import org.codehaus.plexus.logging.Logger;
+ import org.codehaus.plexus.util.DirectoryScanner;
+ import org.codehaus.plexus.util.StringUtils;
+ 
+@@ -60,6 +61,11 @@
+     {
+     }
+ 
++    public PlexusIoFileResourceCollection(Logger logger)
++    {
++    }
++
++
+ 
+     public PlexusIoResource resolve( final PlexusIoResource resource )
+         throws IOException
+--- a/src/main/java/org/codehaus/plexus/components/io/resources/PlexusIoFileResource.java
++++ b/src/main/java/org/codehaus/plexus/components/io/resources/PlexusIoFileResource.java
+@@ -26,6 +26,8 @@
+ import org.apache.commons.io.IOUtils;
+ import org.apache.commons.io.output.DeferredFileOutputStream;
+ import org.codehaus.plexus.components.io.attributes.AttributeUtils;
++import org.codehaus.plexus.components.io.attributes.FileAttributes;
++import org.codehaus.plexus.components.io.attributes.SimpleResourceAttributes;
+ import org.codehaus.plexus.components.io.attributes.PlexusIoResourceAttributes;
+ import org.codehaus.plexus.components.io.functions.ContentSupplier;
+ import org.codehaus.plexus.components.io.functions.FileSupplier;
+@@ -59,6 +61,16 @@
+         this( file, name, attrs, null, null );
+     }
+ 
++    public PlexusIoFileResource( File file ) throws IOException
++    {
++        this( file, file.getPath().replace( '\\', '/' ), file != null && file.exists() ? FileAttributes.uncached( file ) : SimpleResourceAttributes.lastResortDummyAttributesForBrokenOS() );
++    }
++
++    public PlexusIoFileResource( File file, PlexusIoResourceAttributes attrs ) throws IOException
++    {
++        this( file, file.getPath().replace( '\\', '/' ), attrs );
++    }
++
+     @SuppressWarnings( "ConstantConditions" )
+     PlexusIoFileResource( @Nonnull final File file, @Nonnull String name, @Nonnull PlexusIoResourceAttributes attrs,
+                           final ContentSupplier contentSupplier, final InputStreamTransformer streamTransformer )
+@@ -200,4 +212,4 @@
+     }
+ 
+     private static final InputStreamTransformer identityTransformer = AbstractPlexusIoResourceCollection.identityTransformer;
+-}
+\ No newline at end of file
++}
+--- a/pom.xml
++++ b/pom.xml
+@@ -43,7 +43,7 @@
+     <dependency>
+       <groupId>org.codehaus.plexus</groupId>
+       <artifactId>plexus-container-default</artifactId>
+-      <scope>test</scope>
++      <scope>provided</scope>
+       <version>1.0-alpha-30</version>
+     </dependency>
+     <dependency>
+--- /dev/null
++++ b/src/main/java/org/codehaus/plexus/components/io/resources/PlexusIoResourceWithAttributes.java
+@@ -0,0 +1,29 @@
++package org.codehaus.plexus.components.io.resources;
++
++/*
++ * Copyright 2007 The Codehaus Foundation.
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++import org.codehaus.plexus.components.io.attributes.PlexusIoResourceAttributes;
++
++public interface PlexusIoResourceWithAttributes
++    extends PlexusIoResource
++{
++
++    PlexusIoResourceAttributes getAttributes();
++
++    void setAttributes( PlexusIoResourceAttributes attributes );
++
++}

@@ -1,0 +1,5 @@
+
+org.apache.maven.plugins maven-enforcer-plugin * * * *
+org.apache.maven.plugins maven-gpg-plugin * * * *
+org.apache.maven.plugins maven-scm-publish-plugin * * * *
+org.codehaus.mojo animal-sniffer-maven-plugin * * * *

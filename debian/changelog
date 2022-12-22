@@ -1,0 +1,130 @@
+plexus-io (3.2.0-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Add patch to disable SymlinkUtilsTest (Closes: #973135)
+
+ -- Ivo De Decker <ivodd@debian.org>  Mon, 22 Feb 2021 19:13:23 +0000
+
+plexus-io (3.2.0-1) unstable; urgency=medium
+
+  * New upstream version 3.2.0
+  * Refresh patches against new upstream version
+  * Specify debhelper compat 12 via debhelper-compat dependency
+  * Set "Rules-Requires-Root: no" in debian/control
+  * Bump Standards-Version to 4.5.0
+  * Ship NOTICE.txt with binary package
+
+ -- tony mancill <tmancill@debian.org>  Wed, 01 Apr 2020 21:21:20 -0700
+
+plexus-io (3.1.1-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Tue, 11 Dec 2018 00:03:31 +0100
+
+plexus-io (3.1.0-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release
+  * Standards-Version updated to 4.2.1
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Mon, 19 Nov 2018 13:05:07 +0100
+
+plexus-io (3.0.1-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release
+  * Removed Damien Raude-Morvan from the uploaders (Closes: #889438)
+  * Ensure the Java 8 compatibility when built with Java 9 or later
+  * Standards-Version updated to 4.1.5
+  * Switch to debhelper level 11
+  * Use salsa.debian.org Vcs-* URLs
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Mon, 30 Jul 2018 16:08:06 +0200
+
+plexus-io (3.0.0-1) unstable; urgency=medium
+
+  * Team upload.
+  * Upload to unstable
+  * New upstream release
+    - New build dependency on junit4
+    - Fixed incompatibility issues breaking plexus-archiver 2.x
+    - Build depend on libplexus-container-default1.5-java instead
+      of libplexus-containers-java
+  * Build with maven-debian-helper instead of maven-ant-helper
+  * Standards-Version updated to 4.0.0
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Thu, 20 Jul 2017 12:48:42 +0200
+
+plexus-io (2.7.1-1) experimental; urgency=medium
+
+  * Team upload.
+  * Moved the package to Git
+  * Remove Michael Koch from Uploaders (Closes: #654126)
+  * New upstream version 2.7.1 (Closes: #860030)
+  * Update debian/watch to retrieve from github
+  * Bump Standards-Version to 3.9.8
+  * Use debhelper 10
+  * Add myself to Uploaders.
+  * Add build-dep on libjsr305-java, plexus-cli, commons-io
+  * Update build-dep from plexus-utils to  plexus-utils2
+  * Update debian/copyright to be machine-readable and to list all
+    Debian contributors found in debian/changelog.
+  * Update Homepage in debian/control to refer to Github project.
+
+ -- tony mancill <tmancill@debian.org>  Wed, 10 May 2017 19:56:07 -0700
+
+plexus-io (1.0~alpha5-2) unstable; urgency=low
+
+  * Add myself to Uploaders.
+  * Bump Standards-Version to 3.9.2: no changes needed.
+  * Bump to debhelper 7 compat level.
+  * Use mh_clean in clean rule.
+  * Fix FTBFS: remove version param (deprecated in debian-ant-helper)
+    and use POM version (Closes: #634568).
+  * Switch to source format 3.0 (quilt).
+
+ -- Damien Raude-Morvan <drazzib@debian.org>  Tue, 19 Jul 2011 20:05:12 +0200
+
+plexus-io (1.0~alpha5-1) unstable; urgency=low
+
+  * New upstream version.
+  * Downgraded Build-Depends on default-jdk-builddep to default-jdk.
+  * Build-Depends on debhelper >= 7.
+  * Added myself to Uploaders.
+  * Updated Standards-Version to 3.8.3.
+
+ -- Michael Koch <konqueror@gmx.de>  Fri, 25 Sep 2009 08:01:54 +0200
+
+plexus-io (1.0~alpha4-2) unstable; urgency=low
+
+  * Fix missing dependency versions in the POM.
+
+ -- Ludovic Claude <ludovic.claude@laposte.net>  Thu, 09 Jul 2009 21:51:35 +0100
+
+plexus-io (1.0~alpha4-1) experimental; urgency=low
+
+  * New upstream version, add myself to uploaders
+  * Change section to java, bump Standards-Version to 3.8.1
+  * Add the Maven POM to the package,
+  * Add a Build-Depends-Indep dependency on maven-repo-helper
+  * Use mh_installpom and mh_installjar to install the POM and the jar to the
+    Maven repository
+  * Remove the patch for the POM as it's no longer needed, as well as
+    the dependency on Quilt
+  * Add new dependency on libplexus-containers-java
+
+ -- Ludovic Claude <ludovic.claude@laposte.net>  Tue, 24 Mar 2009 20:55:18 +0000
+
+plexus-io (1.0~alpha2-2) unstable; urgency=low
+
+  * Change Depends: default-jre | java2-runtime.
+
+ -- Torsten Werner <twerner@debian.org>  Sun, 21 Dec 2008 00:39:52 +0100
+
+plexus-io (1.0~alpha2-1) unstable; urgency=low
+
+  * Initial release. (Closes: #475726)
+
+ -- Torsten Werner <twerner@debian.org>  Tue, 09 Dec 2008 20:13:45 +0100

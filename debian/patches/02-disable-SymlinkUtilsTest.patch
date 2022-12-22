@@ -1,0 +1,24 @@
+Disable SymlinkUtilsTest.java
+
+See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=973135
+
+Index: plexus-io/src/test/java/org/codehaus/plexus/components/io/attributes/SymlinkUtilsTest.java
+===================================================================
+--- plexus-io.orig/src/test/java/org/codehaus/plexus/components/io/attributes/SymlinkUtilsTest.java	2021-02-22 19:06:39.411660766 +0000
++++ plexus-io/src/test/java/org/codehaus/plexus/components/io/attributes/SymlinkUtilsTest.java	2021-02-22 19:06:39.407660672 +0000
+@@ -47,6 +47,7 @@
+ 
+     }
+ 
++/*
+     @Test
+     public void create_read_symbolic_link_to_file()
+         throws Exception
+@@ -71,6 +72,7 @@
+         assertEquals( new File( "aSubDir" ), SymlinkUtils.readSymbolicLink( new File( target, "symlinkToDir" ) ) );
+ 
+     }
++*/
+ 
+     private File createTargetFile( File target )
+         throws IOException
